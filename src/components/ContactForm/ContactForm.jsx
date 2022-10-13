@@ -59,7 +59,7 @@ class ContactForm extends Component {
                         required
                     />
 
-                    <Button type="submit" value="Add contact"></Button>
+                    <Button type="submit" children="Add contact"></Button>
 
                 </Form>
             </>)

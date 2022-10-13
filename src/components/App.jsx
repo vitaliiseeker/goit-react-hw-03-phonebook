@@ -5,7 +5,6 @@ import ContactList from "./ContactList";
 import TotalNumberContacts from "./TotalNumberContacts";
 import Filter from "./Filter";
 
-
 export class App extends Component {
   state = {
     contacts: [],
@@ -16,6 +15,20 @@ export class App extends Component {
     //   { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     // ],
     filter: '',
+  }
+
+  componentDidMount() {
+    const contacts = localStorage.getItem("contacts");
+    if (contacts) {
+      this.setState({ contacts: JSON.parse(contacts) })
+    }
+  }
+
+  componentDidUpdate(prevState) {
+    const { contacts } = this.state;
+    if (contacts !== prevState) {
+      localStorage.setItem("contacts", JSON.stringify(contacts));
+    }
   }
 
   addContact = data => {
@@ -47,6 +60,7 @@ export class App extends Component {
       contacts: [...this.state.contacts
         .filter(contact => contact.id !== contactId)]
     });
+    localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
   }
 
   render() {
@@ -73,7 +87,8 @@ export class App extends Component {
               <ContactList
                 contacts={filteredContacts}
                 deleteContact={this.deleteContact}
-              /></>}
+              />
+            </>}
 
         </Container>
       </>

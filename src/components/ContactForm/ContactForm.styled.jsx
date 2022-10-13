@@ -9,6 +9,7 @@ min-width: 200px;
 
 padding: 20px 30% 20px 20px;
 border: 1px solid #808080;
+border-radius: 10px;
 `;
 
 export const Label = styled.label`
@@ -19,7 +20,4 @@ export const Input = styled.input`
 padding: 4px;
 font-size: 18px;
 
-/* &:invalid {
-    border: 1px solid #f41c52;
-} */
 `;
